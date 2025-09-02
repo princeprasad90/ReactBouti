@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/href-no-hash */
 
+import React from 'react';
 import Page from 'components/Page';
 import Typography from 'components/Typography';
-import React from 'react';
 import {
   Alert,
   Card,
@@ -13,7 +13,7 @@ import {
   UncontrolledAlert,
 } from 'reactstrap';
 
-const AlertPage = () => {
+const AlertPage: React.FC = () => {
   return (
     <Page title="Alerts" breadcrumbs={[{ name: 'alerts', active: true }]}>
       <Row>

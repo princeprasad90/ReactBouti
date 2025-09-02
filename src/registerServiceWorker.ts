@@ -18,7 +18,7 @@ const isLocalhost = Boolean(
     )
 );
 
-export default function register() {
+export default function register(): void {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
@@ -43,12 +43,15 @@ export default function register() {
   }
 }
 
-function registerValidSW(swUrl) {
+function registerValidSW(swUrl: string): void {
   navigator.serviceWorker
     .register(swUrl)
-    .then(registration => {
+    .then((registration: ServiceWorkerRegistration) => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
+        if (!installingWorker) {
+          return;
+        }
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
@@ -72,7 +75,7 @@ function registerValidSW(swUrl) {
     });
 }
 
-function checkValidServiceWorker(swUrl) {
+function checkValidServiceWorker(swUrl: string): void {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
     .then(response => {
@@ -82,7 +85,7 @@ function checkValidServiceWorker(swUrl) {
         response.headers.get('content-type').indexOf('javascript') === -1
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then(registration => {
+        navigator.serviceWorker.ready.then((registration) => {
           registration.unregister().then(() => {
             window.location.reload();
           });
@@ -99,9 +102,9 @@ function checkValidServiceWorker(swUrl) {
     });
 }
 
-export function unregister() {
+export function unregister(): void {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
+    navigator.serviceWorker.ready.then((registration: ServiceWorkerRegistration) => {
       registration.unregister();
     });
   }
