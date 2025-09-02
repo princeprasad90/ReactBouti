@@ -20,7 +20,16 @@ const tagMap = {
 
 const types = Object.keys(tagMap);
 
-const Typography = ({ tag: Tag, className, type, ...restProps }) => {
+type TypographyType = keyof typeof tagMap;
+
+interface TypographyProps {
+  tag?: React.ElementType;
+  className?: string;
+  type?: TypographyType;
+  [key: string]: any;
+}
+
+const Typography: React.FC<TypographyProps> = ({ tag: Tag, className, type = 'p', ...restProps }) => {
   const classes = classNames({ [type]: !!type }, className);
   let TypoComp;
 

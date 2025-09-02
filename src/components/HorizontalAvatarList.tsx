@@ -3,11 +3,24 @@ import React, { Fragment } from 'react';
 import { UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'utils/propTypes';
 
-const HorizontalAvatarList = ({
-  tag: Tag,
-  avatars,
-  avatarProps,
-  reversed,
+interface AvatarItem {
+  avatar: string;
+  name?: string;
+}
+
+interface HorizontalAvatarListProps {
+  tag?: React.ElementType;
+  avatars?: AvatarItem[];
+  avatarProps?: Record<string, unknown>;
+  reversed?: boolean;
+  [key: string]: any;
+}
+
+const HorizontalAvatarList: React.FC<HorizontalAvatarListProps> = ({
+  tag: Tag = 'div',
+  avatars = [],
+  avatarProps = {},
+  reversed = false,
   ...restProps
 }) => {
   let leng = reversed ? avatars.length + 1 : 1;

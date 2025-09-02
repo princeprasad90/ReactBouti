@@ -20,10 +20,21 @@ export const propTypes = {
   ),
 };
 
-const Todos = ({ todos, ...restProps }) => {
+interface Todo {
+  id: number | string;
+  title: string;
+  done: boolean;
+}
+
+interface TodosProps {
+  todos?: Todo[];
+  [key: string]: any;
+}
+
+const Todos: React.FC<TodosProps> = ({ todos = [], ...restProps }) => {
   return (
     <ListGroup flush {...restProps}>
-      {todos.map(({ id, title, done } = {}) => (
+      {todos.map(({ id, title, done } = {} as Todo) => (
         <ListGroupItem key={id} className="border-0">
           <FormGroup check>
             <Label check>
