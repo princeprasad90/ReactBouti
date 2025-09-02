@@ -71,12 +71,16 @@ const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
 };
 
-class App extends React.Component {
+interface AppProps {
+  breakpoint?: string;
+  history?: any;
+}
 
+class App extends React.Component<AppProps> {
 
   componentDidMount() {
-    const { history } = this.props;
-    history.listen(_ => {
+    const { history } = this.props as any;
+    history.listen(() => {
       history.go(1);
     });
   }
@@ -178,7 +182,7 @@ class App extends React.Component {
   }
 }
 
-const query = ({ width }) => {
+const query = ({ width }: { width: number }) => {
   if (width < 575) {
     return { breakpoint: 'xs' };
   }
