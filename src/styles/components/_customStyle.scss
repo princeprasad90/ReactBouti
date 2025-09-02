@@ -1,0 +1,61 @@
+.colShadow {
+    margin-top: 6px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    width: 140%;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+  .BoxLayout{  
+        flex: 0 0 22%;
+        max-width: 25%;
+    
+  }
+  .BoxLayoutCampaign{  
+    flex: 0 0 22%;
+    max-width: 32%;
+
+}
+.BoxLayoutCampaignEdit{  
+  flex: 0 0 60%;
+  max-width: 50%;
+
+}
+  .InnerBoxLayout{  
+    margin-top: 6px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+
+}
+.btn-success {
+  background-color:greenyellow;
+  border: none;
+  color: black;
+  padding: 6px 6px 6px 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.btn-primary {
+  background-color:lightblue;
+  border: none;
+  color: black;
+  padding: 6px 6px 6px 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.btn-secondry {
+  background-color:orange;
+  border: none;
+  color: black;
+  padding: 6px 6px 6px 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+/* Darker background on mouse-over */
+.btn-success:hover {
+  background-color:green;
+}
+.modal-content {
+  width: 150%;
+}

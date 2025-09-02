@@ -1,0 +1,28 @@
+workflow:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "ECS-master"'
+      when: always
+    - when: never
+
+stages:
+  - build
+
+variables:
+  DOCKER_DRIVER: overlay2
+  ENVIRONMENT_TAG: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
+  ECR_PATH: "652586300051.dkr.ecr.eu-west-1.amazonaws.com/celebrityui"
+  LATEST_IMAGE: 652586300051.dkr.ecr.eu-west-1.amazonaws.com/celebrityui:master
+  DOMAIN: staging-celebrity
+
+build:
+
+  image: docker:stable
+  stage: build
+  before_script:
+    - alias aws='docker run --rm amazon/aws-cli'
+    - 'aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 652586300051.dkr.ecr.eu-west-1.amazonaws.com'
+  script:
+    #- 'cd Celebrity/BTQAPI'
+    - 'docker build -t $LATEST_IMAGE -t $LATEST_IMAGE-$CI_COMMIT_SHORT_SHA .'
+    - 'docker push $LATEST_IMAGE'
+    - 'docker push $LATEST_IMAGE-$CI_COMMIT_SHORT_SHA'
