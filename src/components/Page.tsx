@@ -1,16 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'utils/propTypes';
 import bn from 'utils/bemnames';
 import { useHistory } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import {getCookie} from "../network"
-import { ToastContainer } from 'react-toastify';
+import { getCookie } from '../network';
 import Typography from './Typography';
+
 const bem = bn.create('page');
-const Page = ({
+
+interface BreadcrumbItemProps {
+  name: string;
+  active: boolean;
+}
+
+interface PageProps {
+  title?: string | React.ReactElement;
+  breadcrumbs?: BreadcrumbItemProps[];
+  tag?: React.ElementType;
+  className?: string;
+  children?: React.ReactNode;
+  [key: string]: any;
+}
+
+const Page: React.FC<PageProps> = ({
   title,
   breadcrumbs,
-  tag: Tag,
+  tag: Tag = 'div',
   className,
   children,
   ...restProps

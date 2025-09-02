@@ -5,14 +5,25 @@ import classNames from 'classnames';
 
 import userImage from 'assets/img/users/ico_user.jpg';
 
-const Avatar = ({
-  rounded,
-  circle,
-  src,
-  size,
-  tag: Tag,
+interface AvatarProps {
+  rounded?: boolean;
+  circle?: boolean;
+  src?: string;
+  size?: string | number;
+  tag?: React.ElementType;
+  className?: string;
+  style?: React.CSSProperties;
+  [key: string]: any;
+}
+
+const Avatar: React.FC<AvatarProps> = ({
+  rounded = false,
+  circle = true,
+  src = userImage,
+  size = 40,
+  tag: Tag = 'img',
   className,
-  style,
+  style = {},
   ...restProps
 }) => {
   const classes = classNames({ 'rounded-circle': circle, rounded }, className);

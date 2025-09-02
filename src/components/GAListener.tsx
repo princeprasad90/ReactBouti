@@ -9,10 +9,16 @@ if (hasGAId) {
   ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS);
 }
 
-class GAListener extends React.Component {
+interface GAListenerProps {
+  children: React.ReactNode;
+}
+
+class GAListener extends React.Component<GAListenerProps> {
   static contextTypes = {
     router: PropTypes.object,
   };
+
+  context!: { router: any };
 
   componentDidMount() {
     if (hasGAId) {
@@ -21,7 +27,7 @@ class GAListener extends React.Component {
     }
   }
 
-  sendPageView(location) {
+  sendPageView(location: any) {
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
   }
