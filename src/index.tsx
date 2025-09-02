@@ -3,4 +3,4 @@ import ReactDOM from 'react-dom';
 
 import MainApp from './MainApp';
 
-ReactDOM.render(<MainApp />, document.getElementById('root'));
+ReactDOM.render(<MainApp />, document.getElementById('root') as HTMLElement);
